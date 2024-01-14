@@ -36,19 +36,25 @@ def admin_reg(request):
 
 
 def admin_log(request):
+
     if request.method == 'POST':
         form = userlogin(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            request.session['username'] = username
             user = authenticate(request,username=username,password=password)
             if user is not None:
                 login(request,user)
-                return HttpResponse('Logged Successfully')
+                return redirect(admin_index)
             else:
                 return HttpResponse('Invalid username or password')
 
         else:
             return HttpResponse('login failed')
 
-    return render(request,'userlogin.html')
+    return render(request,'admin_log.html')
+
+def admin_index(request):
+    user = request.session['username']
+    return render(request,'admin_index.html',{'username':user})
