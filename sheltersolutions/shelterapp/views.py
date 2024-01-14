@@ -60,3 +60,15 @@ def admin_log(request):
 def admin_index(request):
     user = request.session['username']
     return render(request,'admin_index.html',{'username':user})
+
+def add_property(request):
+    if request.method == 'POST':
+        p_name = request.POST.get('p_name')
+        addr = request.POST.get('addr')
+        location = request.POST.get('location')
+        features = request.POST.get('features')
+
+        b = property(p_name=p_name,addr=addr,location=location,features=features)
+        b.save()
+
+    return render(request,'add_property.html')
