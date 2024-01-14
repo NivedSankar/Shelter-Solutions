@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate,login
 # Create your views here.
 
 def index(request):
+
     return render(request,'index.html')
 
 def admin_reg(request):
@@ -76,4 +77,15 @@ def add_property(request):
 
 def add_unit(request):
     properties = property.objects.all()
+    if request.method == 'POST':
+
+        p_id = request.POST.get('property')
+        p_instance =  property.objects.get(pk=p_id)
+        rent = request.POST.get('rent')
+        type = request.POST.get('type')
+        img = request.POST.get('img')
+
+        a = Unit(Property=p_instance,rent=rent,type=type,img=img)
+        a.save()
+
     return render(request,'add_unit.html',{'properties':properties})
