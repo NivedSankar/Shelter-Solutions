@@ -42,10 +42,12 @@ def admin_log(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            request.session['username'] = username
+
             user = authenticate(request,username=username,password=password)
             if user is not None:
                 login(request,user)
+                request.session['username'] = username
+
                 return redirect(admin_index)
             else:
                 return HttpResponse('Invalid username or password')
