@@ -19,7 +19,7 @@
         <form method="post">{% csrf_token %}
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
-
+<form method="post">{% csrf_token %}
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
@@ -28,24 +28,43 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" name="p_name"/>
+                <select class="form-control" name="property">
+                  {% for property in properties %}
+                      <option value="{{ property.id }}">{{ property.p_name }}</option>
+                  {% endfor %}
+                </select>
 
               </div>
             </div>
 
 
 
+<!--            <hr class="mx-n3">-->
+
+<!--            <div class="row align-items-center py-3">-->
+<!--              <div class="col-md-3 ps-5">-->
+
+<!--                <h6 class="mb-0">Address</h6>-->
+
+<!--              </div>-->
+<!--              <div class="col-md-9 pe-5">-->
+
+<!--                <textarea class="form-control" rows="3" placeholder="Enter the address" name="addr"></textarea>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
             <hr class="mx-n3">
 
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Address</h6>
+                <h6 class="mb-0">Rent Cost</h6>
 
               </div>
               <div class="col-md-9 pe-5">
 
-                <textarea class="form-control" rows="3" placeholder="Enter the address" name="addr"></textarea>
+                <input type="text" class="form-control form-control-lg" placeholder="Enter the rent cost" name="rent"/>
 
               </div>
             </div>
@@ -55,27 +74,17 @@
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Location</h6>
+                <h6 class="mb-0">Type</h6>
 
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" placeholder="Enter the location" name="location"/>
-
-              </div>
-            </div>
-
-            <hr class="mx-n3">
-
-            <div class="row align-items-center py-3">
-              <div class="col-md-3 ps-5">
-
-                <h6 class="mb-0">Features</h6>
-
-              </div>
-              <div class="col-md-9 pe-5">
-
-                <textarea class="form-control" rows="3" placeholder="Enter the address" name="features"></textarea>
+                <select id="type" name="type" class="form-control">
+                  <option value="1BHK">1 Bedroom, Hall, Kitchen</option>
+                  <option value="2BHK">2 Bedrooms, Hall, Kitchen</option>
+                  <option value="3BHK">3 Bedrooms, Hall, Kitchen</option>
+                  <option value="4BHK">4 Bedrooms, Hall, Kitchen</option>
+                </select>
 
               </div>
             </div>
@@ -87,8 +96,9 @@
             </div>
 
           </div>
+  </form>
         </div>
-</form>
+
       </div>
 
     </div>

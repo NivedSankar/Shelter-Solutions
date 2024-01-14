@@ -7,3 +7,5 @@ class property(models.Model):
     addr = models.TextField()
     location = models.CharField(max_length=100)
     features = models.TextField()
+
+

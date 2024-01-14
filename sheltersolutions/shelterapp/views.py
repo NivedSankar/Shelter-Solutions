@@ -70,5 +70,10 @@ def add_property(request):
 
         b = property(p_name=p_name,addr=addr,location=location,features=features)
         b.save()
+        request.session['p_name'] = p_name
 
     return render(request,'add_property.html')
+
+def add_unit(request):
+    properties = property.objects.all()
+    return render(request,'add_unit.html',{'properties':properties})
